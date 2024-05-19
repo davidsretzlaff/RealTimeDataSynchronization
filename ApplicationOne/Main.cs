@@ -32,6 +32,12 @@ namespace ApplicationOne
 
 		}
 
+		/// <summary>
+		/// Handles the click event of the send button by validating the input field, clearing any errors if input is provided,
+		/// sending the message to the SignalR Hub, and clearing the input field.
+		/// </summary>
+		/// <param name="sender">The object that triggered the event.</param>
+		/// <param name="e">The event arguments.</param>
 		private async void buttonSend_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(textInput.Text))
@@ -47,11 +53,18 @@ namespace ApplicationOne
 			}
 		}
 
+		/// <summary>
+		/// Initializes the SignalR connection by retrieving the hub URL from the configuration file,
+		/// establishing a connection to the SignalR Hub, and handling incoming messages from the hub.
+		/// </summary>
 		private async void InitializeSignalR()
 		{
 			// Retrieve the SignalR hub URL from the configuration file
 			string hubUrl = ConfigurationManager.AppSettings["SignalRHubUrl"];
-
+			if (hubUrl == null)
+			{
+				MessageBox.Show("Hub URL not configured");
+			}
 			// Build the connection to the SignalR Hub using the retrieved URL
 			connection = new HubConnectionBuilder()
 				.WithUrl(hubUrl)
@@ -76,7 +89,10 @@ namespace ApplicationOne
 			}
 		}
 
-		// Função para exibir a mensagem na interface do usuário
+		/// <summary>
+		/// Displays a message on the textOutput control, ensuring thread safety by invoking the function on the main thread if necessary.
+		/// </summary>
+		/// <param name="message">The message to be displayed.</param>
 		private void DisplayMessage(string message)
 		{
 			if (textOutput.InvokeRequired)
