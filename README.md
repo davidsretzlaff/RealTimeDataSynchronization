@@ -86,6 +86,9 @@ This document provides detailed instructions on how to build and run two interco
 - **Real-Time Text Synchronization:**
   - Through SignalR, any text entered into the input field of one application is instantly reflected in the output field of the other application.
 
+- **Input Validation:**
+  - Messages cannot be null and must not exceed 300 characters. Unit tests have been implemented to ensure this validation.
+
 - **Simple and Intuitive User Interface:**
   - Both applications feature a minimalist interface with an input field and an output field.
 
