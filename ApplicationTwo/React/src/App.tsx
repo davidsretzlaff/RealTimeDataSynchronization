@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Row } from 'react-bootstrap';
-
 import MessageComponent from './components/MessageComponent';
-
-
-
 
 function App() {
   return (
