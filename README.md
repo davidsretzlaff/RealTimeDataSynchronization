@@ -95,7 +95,7 @@ This document provides detailed instructions on how to build and run two interco
 - **Scalability:**
   - The system supports multiple instances of Application 1 connecting and synchronizing with a single instance of Application 2, and vice versa.
 
-## Technical Choices and Challenges
+## Technical Choices
 
 ### Technical Choices
 
@@ -110,17 +110,6 @@ This document provides detailed instructions on how to build and run two interco
 
 - **Docker:**
   - Used to streamline the configuration and execution of the web application, ensuring a consistent and replicable environment.
-
-### Challenges Faced
-
-- **SignalR Integration:**
-  - Initial setup of SignalR presented challenges, especially in bidirectional real-time synchronization.
-
-- **Unit Testing:**
-  - Creating unit tests that simulate real-time communication was challenging but essential to ensure application robustness.
-
-- **Synchronization between Multiple Instances:**
-  - Implementing logic to allow multiple instances of Application 1 to connect to a single instance of Application 2 required careful design to ensure data consistency.
 
 ## Conclusion
 
