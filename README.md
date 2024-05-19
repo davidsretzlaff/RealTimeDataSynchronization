@@ -116,3 +116,18 @@ This document provides detailed instructions on how to build and run two interco
 This project demonstrates an effective solution for real-time data synchronization between a local application and a web application.
 The provided instructions enable easy replication of the development and execution environments.
 The technical choices and challenges overcome during development reinforce the robustness and scalability of the implemented solution.
+
+### Images
+- ## Application Two sending message
+![image](https://github.com/davidsretzlaff/RealTimeDataSynchronization/assets/14004154/635e5fab-f1cf-437d-945e-edbc00f577cc)
+
+- ## Applications One received message
+![image](https://github.com/davidsretzlaff/RealTimeDataSynchronization/assets/14004154/c58570e8-7b88-4b64-8621-67867d42c1bb)
+
+- ## Application One sending message
+![image](https://github.com/davidsretzlaff/RealTimeDataSynchronization/assets/14004154/9aab8db7-4b6d-4ecf-897c-415600f4f9df)
+
+- ## Application Two received message
+![image](https://github.com/davidsretzlaff/RealTimeDataSynchronization/assets/14004154/e4a3a2b2-75c1-48d0-9b3d-2d8ad3353151)
+
+
