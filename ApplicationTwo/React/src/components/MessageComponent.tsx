@@ -6,31 +6,31 @@ import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 const MessageComponent = () => {
     const [message, setMessage] =useState('');
     const [result, setResult] = useState('This is the message received from the one application');
-    const [validated, setValidated] = useState(false);
+    const [validated, setValidated] = useState(true);
+    const signalrUrl = process.env.REACT_APP_SIGNALR_URL;
 
     const conn = new HubConnectionBuilder()
-            .withUrl('https://localhost:32768/synchub')
+            .withUrl(signalrUrl!)
             .configureLogging(LogLevel.Information)
             .build();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-  
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setMessage(e.target.value);
       setValidated(true);
     };        
     const joinChatRoom = async () => {
         try {
           if(message === '') {
+            setValidated(false)
             return;
           }
+          
           await conn.start().catch(err => console.error(err));
-          await conn.invoke('SendFromAppTwo', message);          
+          await conn.invoke('SendFromAppTwo', message); 
+          console.log('SendFromAppTwo')         
           conn.on('ReceiveFromAppOne', (message) => {
             setResult(message)
+            console.log('result',message)    
           });
           setValidated(true)
           setMessage('')
@@ -44,7 +44,7 @@ const MessageComponent = () => {
         <Col md={10} lg={8} xl={6} className='margin-top'>
           <div className="message-box p-4 shadow-sm rounded">
             <h3 className="text-center mb-4">Real Time Messages</h3>
-            <Form noValidate validated={validated} onSubmit={handleSubmit} className="d-flex flex-column h-500">
+            <Form className="d-flex flex-column h-500">
               <Form.Group controlId="formReceivedMessage" className="flex-grow-1 mb-4 ">
                 <Form.Control
                   as="textarea"
@@ -60,10 +60,10 @@ const MessageComponent = () => {
                     placeholder="Type your message"
                     value={message}
                     required
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="message-input"
+                    onChange={handleChange}
+                    className={`message-input ${!validated ? 'is-invalid' : ''}`}
                   />
-                  <Button variant="secondary" type="submit" onClick={(e) => joinChatRoom()} className="send-button">
+                  <Button variant="secondary" onClick={(e) => joinChatRoom()} className="send-button">
                     Send
                   </Button>
                 </InputGroup>

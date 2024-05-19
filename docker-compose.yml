@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  react-app:
+    build: ./ApplicationTwo/React/
+    ports:
+      - "3000:3000"
+    restart: always
+
+  dotnet-app:
+    build: ./ApplicationTwo/Service/src/Hub
+    ports:
+      - "8080:8080"
+    restart: always

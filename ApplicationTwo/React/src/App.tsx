@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <header className="App-header">
-          <h3 className="text-center mb-4">Real Time Messages</h3>
+          <h3 className="text-center mb-4">Application Two</h3>
       </header>
       <MessageComponent></MessageComponent>
     </> 
