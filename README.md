@@ -77,7 +77,7 @@ This document provides detailed instructions on how to build and run two interco
 
 - To run unit tests in .NET Core:
   ```bash
-  cd your-repository/RealTimeDataSynchronization/backend
+  cd your-repository/RealTimeDataSynchronization/ApplicationTwo/Service/src/Hub
   dotnet test
   ```
 
