@@ -23,8 +23,8 @@ function Home(): React.ReactElement {
           await conn.start().catch(err => console.error(err));
           await conn.invoke('SendFromApp2', message);
 
-          conn.on('ReceiveFromApp1', (message) => {
-            console.log('ReceiveFromApp1',message)
+          conn.on('ReceiveFromApp2', (message) => {
+            console.log('ReceiveFromApp2',message)
             setResult(message)
           });
           setConnection(conn);

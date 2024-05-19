@@ -1,0 +1,32 @@
+.message-container {
+    background-color: #000000cc;
+    height: 90vh;
+  }
+  
+  .message-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .received-message {
+    background-color: #fffffff9;
+    resize: none;
+    border: none;
+    padding: 10px;
+  }
+  
+  .message-box Form {
+    height: 74vh;
+  }
+  .message-box Form textarea {
+    height: 55vh;
+  }
+
+  .received-message.highlight {
+    background-color: #e6f7ff; 
+  }
+
+  .margin-top{
+    margin-top: 10px;
+  }
