@@ -7,6 +7,7 @@ const MessageComponent = () => {
     const [message, setMessage] =useState('');
     const [result, setResult] = useState('This is the message received from the one application');
     const [validated, setValidated] = useState(true);
+    const [validatedCharacterCount, setValidatedCharacterCount] = useState(true);
     const signalrUrl = process.env.REACT_APP_SIGNALR_URL;
 
     const conn = new HubConnectionBuilder()
@@ -15,13 +16,22 @@ const MessageComponent = () => {
             .build();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (message.length <= 300) {
+        setValidatedCharacterCount(true)
+      } 
+      if (message.length >= 0) {
+        setValidated(true)
+      }
       setMessage(e.target.value);
-      setValidated(true);
     };        
     const joinChatRoom = async () => {
         try {
-          if(message === '') {
+          if (message === '') {
             setValidated(false)
+            return;
+          }
+          if (message.length >= 300) {
+            setValidatedCharacterCount(false)
             return;
           }
           
@@ -54,6 +64,7 @@ const MessageComponent = () => {
                 />
               </Form.Group>
               <Form.Group controlId="formMessage">
+              
                 <InputGroup>
                   <Form.Control
                     type="text"
@@ -61,11 +72,22 @@ const MessageComponent = () => {
                     value={message}
                     required
                     onChange={handleChange}
-                    className={`message-input ${!validated ? 'is-invalid' : ''}`}
+                    className={`message-input ${!validated || !validatedCharacterCount ? 'is-invalid' : ''}`}
                   />
+                   
                   <Button variant="secondary" onClick={(e) => joinChatRoom()} className="send-button">
                     Send
                   </Button>
+                  { !validatedCharacterCount && (
+                    <div className="invalid-feedback">
+                      Your message must be 300 characters or less.
+                    </div>
+                  )}
+                  { !validated && (
+                    <div className="invalid-feedback">
+                      The field must not be empty.
+                    </div>
+                  )}
                 </InputGroup>
               </Form.Group>
             </Form>
